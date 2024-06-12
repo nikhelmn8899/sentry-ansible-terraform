@@ -1,0 +1,24 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt: update_cache=yes
+
+    - name: Install dependencies
+      apt: name={{ item }} state=present
+      with_items:
+        - git
+        - curl
+        - docker.io
+        - docker-compose
+
+    - name: Clone Sentry repo
+      git:
+        repo: 'https://github.com/getsentry/self-hosted.git'
+        dest: /opt/sentry
+
+    - name: Start Sentry
+      command: "docker-compose up -d"
+      args:
+        chdir: /opt/sentry
+
