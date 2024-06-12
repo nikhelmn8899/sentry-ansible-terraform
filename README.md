@@ -9,5 +9,5 @@
 
 1. Navigate to the `sentry-ansible` directory.
 2. Edit the `hosts.ini` file and add your EC2 instance's public IP address.
-3. Run `ansible-playbook -i hosts.ini install_sentry.yml --private-key=path/to/your/private/key.pem` to install and start Sentry.
+3. Run `ansible-playbook -i hosts.ini sentry.yml --private-key=path/to/your/private/key.pem` to install and start Sentry.
 
