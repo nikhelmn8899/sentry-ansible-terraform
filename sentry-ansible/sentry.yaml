@@ -1,24 +1,50 @@
-- hosts: all
-  become: yes
+---
+- hosts: sentry
   tasks:
-    - name: Update apt cache
-      apt: update_cache=yes
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
 
-    - name: Install dependencies
-      apt: name={{ item }} state=present
-      with_items:
-        - git
-        - curl
-        - docker.io
-        - docker-compose
+    - name: Install Docker Compose
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-{{ ansible_system | lower }}-{{ ansible_machine }}"
+        dest: /usr/local/bin/docker-compose
+        mode: '0755'
 
-    - name: Clone Sentry repo
+    - name: Clone Self-Hosted Sentry
       git:
-        repo: 'https://github.com/getsentry/self-hosted.git'
+        repo: https://github.com/getsentry/self-hosted.git
         dest: /opt/sentry
+        force: yes
 
-    - name: Start Sentry
-      command: "docker-compose up -d"
-      args:
+    - name: Install expect
+      apt:
+        name: expect
+        state: present
+
+    - name: Run Sentry Installer with expect
+      expect:
+        command: /bin/bash -x install.sh
         chdir: /opt/sentry
+        responses:
+          'y or n\?': 'y\n'
+      register: result
+      async: 3600  # 1 hour timeout
+      poll: 10
+
+    - name: Print installer output
+      debug:
+        var: result.stdout_lines
+
+    - name: Print installer error output
+      debug:
+        var: result.stderr_lines
+
+    - name: Fetch install log
+      fetch:
+        src: /opt/sentry/install.log
+        dest: ./install.log
+        flat: yes
 
