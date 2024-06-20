@@ -59,8 +59,11 @@ TASK [Run Sentry Installer with expect] ****************************************
 ASYNC POLL on 172.31.43.34: jid=j585171370758.7125 started=1 finished=0
 ASYNC POLL on 172.31.43.34: jid=j585171370758.7125 started=1 finished=0
 ```
+![ansible](https://github.com/nikhelmn8899/sentry-ansible-terraform/assets/148172939/69e55588-4c3e-4515-a12c-84a9fdb87eed)
 
+![docker install sh](https://github.com/nikhelmn8899/sentry-ansible-terraform/assets/148172939/56b7c1b4-e7f2-4632-b149-857f58a43a16)
 
+![Sentry](https://github.com/nikhelmn8899/sentry-ansible-terraform/assets/148172939/1318d82d-1277-4e19-b70d-02daca049c41)
 
 
 
