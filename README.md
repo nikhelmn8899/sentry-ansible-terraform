@@ -39,7 +39,7 @@ root@ip-172-31-43-34:/home/ubuntu/self-hosted# ```sudo ./install.sh```
 root@ip-172-31-43-34:/home/ubuntu/self-hosted# ```docker-compose up -d```
 ![docker install sh](https://github.com/nikhelmn8899/sentry-ansible-terraform/assets/148172939/56b7c1b4-e7f2-4632-b149-857f58a43a16)
 
-Deploying Sentry on AWS using Terraform and Ansible, ensuring they have all the information needed to successfully set up and manage their Sentry instance.>>>>```http://3.110.30.143:9000/auth/login/sentry/```
+Deploying Sentry on AWS using Terraform and Ansible, Successfully set up and manage their Sentry instance.>>>>```http://3.110.30.143:9000/auth/login/sentry/```
 ![Sentry](https://github.com/nikhelmn8899/sentry-ansible-terraform/assets/148172939/1318d82d-1277-4e19-b70d-02daca049c41)
 
 
